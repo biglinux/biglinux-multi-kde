@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=XSession
+Exec=/usr/bin/startkde-classic
+TryExec=/usr/bin/startkde
+DesktopNames=KDE
+Name=Clássico (KDE Plasma)

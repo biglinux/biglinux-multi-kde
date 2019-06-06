@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=XSession
+Exec=/usr/bin/startkde-new
+TryExec=/usr/bin/startkde
+DesktopNames=KDE
+Name=Moderno (KDE Plasma)

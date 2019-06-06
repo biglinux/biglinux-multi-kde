@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+package_name=biglinux-multi-kde
+mkdir -p "/usr/share/dpkgdivert/biglinux-multi-kde"
+case "$1" in
+  install)
+    dpkg-divert --package "$package_name" --divert "/usr/share/dpkgdivert/biglinux-multi-kde/usrsharexsessionsplasma.desktop" --rename "/usr/share/xsessions/plasma.desktop"
+    ;;
+  upgrade)
+if [ "$(dpkg-divert --list "/usr/share/xsessions/plasma.desktop")" = "" ]
+then
+    dpkg-divert --package "$package_name" --divert "/usr/share/dpkgdivert/biglinux-multi-kde/usrsharexsessionsplasma.desktop" --rename "/usr/share/xsessions/plasma.desktop"
+fi
+;;
+esac
+exit 0

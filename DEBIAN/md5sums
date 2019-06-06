@@ -1,0 +1,9 @@
+7649a33a4289606cbfd24bb16105db40  DEBIAN/dpkg-divert
+5b3628af299a9aa74f362d15e7aa20fd  DEBIAN/preinst
+43f7ec472e98f118d4c56c46d4f4e105  DEBIAN/postrm
+d41d8cd98f00b204e9800998ecf8427e  DEBIAN/md5sums
+df2fbf0d18d7248f6d8c25ce59c6f61e  DEBIAN/control
+36c65d07e11ff4c142179b616598ea93  usr/bin/startkde-classic
+010cc2899032f502a1a2e2f9e90e3431  usr/bin/startkde-new
+badc60e15c340c6a2d11ddce7ac3466a  usr/share/xsessions/plasma-new.desktop
+9b149b53389e11cd0a1736b3ef89eac6  usr/share/xsessions/plasma.desktop

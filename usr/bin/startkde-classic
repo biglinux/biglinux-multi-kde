@@ -1,0 +1,43 @@
+#!/bin/sh
+
+mkdir -p ~/.kdebiglinux/classic
+
+
+#Link from wallpaper to ksplash
+ln -sf "$(grep '\[Wallpaper\]' -A2 -m1 ~/.config/plasma-org.kde.plasma.desktop-appletsrc | grep -m1 "Image=" | sed 's|Image=file://||g'
+/usr/share/wallpapers/BigLinux01.jpg)" /tmp/bigksplash.jpg
+
+#if user is running another kde instance, just exit
+if [ "$(ps -aux | grep "$USER" | grep /usr/bin/startkde$)" != "" ]; then
+    exit 0
+fi
+
+if [ "$(cat "$HOME/.kdebiglinux/lastlogin")" = "new" ]; then
+    #Move config to use later
+    cp -f ~/.config/plasma-org.kde.plasma.desktop-appletsrc ~/.kdebiglinux/new/plasma-org.kde.plasma.desktop-appletsrc
+    cp -f ~/.config/plasmarc ~/.kdebiglinux/new/plasmarc
+    cp -f ~/.config/plasmashellrc ~/.kdebiglinux/new/plasmashellrc
+
+    #Move config to use now
+    cp -f ~/.kdebiglinux/classic/plasma-org.kde.plasma.desktop-appletsrc ~/.config/plasma-org.kde.plasma.desktop-appletsrc
+    cp -f ~/.kdebiglinux/classic/plasmarc ~/.config/plasmarc
+    cp -f ~/.kdebiglinux/classic/plasmashellrc ~/.config/plasmashellrc
+fi
+
+#If never used classic or new, replace actual config
+if [ ! -e "$HOME/.kdebiglinux/lastlogin" ]; then
+    mkdir -p ~/.kdebiglinux/backup
+    cp -f ~/.config/plasma-org.kde.plasma.desktop-appletsrc ~/.kdebiglinux/backup/plasma-org.kde.plasma.desktop-appletsrc
+    cp -f ~/.config/plasmarc ~/.kdebiglinux/backup/plasmarc
+    cp -f ~/.config/plasmashellrc ~/.kdebiglinux/backup/plasmashellrc
+
+
+    cp -f ~/.kdebiglinux/classic/plasma-org.kde.plasma.desktop-appletsrc ~/.config/plasma-org.kde.plasma.desktop-appletsrc
+    cp -f ~/.kdebiglinux/classic/plasmarc ~/.config/plasmarc
+    cp -f ~/.kdebiglinux/classic/plasmashellrc ~/.config/plasmashellrc
+fi
+
+
+echo "classic" > ~/.kdebiglinux/lastlogin
+
+startkde

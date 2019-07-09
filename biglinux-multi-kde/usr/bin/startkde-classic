@@ -6,6 +6,8 @@ mkdir -p ~/.kdebiglinux/classic
 #Link from wallpaper to ksplash
 ln -sf "$(grep '\[Wallpaper\]' -A2 -m1 ~/.config/plasma-org.kde.plasma.desktop-appletsrc | grep -m1 "Image=" | sed 's|Image=file://||g'
 /usr/share/wallpapers/BigLinux01.jpg)" /tmp/bigksplash.jpg
+chmod 777 /tmp/bigksplash.jpg
+
 
 #if user is running another kde instance, just exit
 if [ "$(ps -aux | grep "$USER" | grep /usr/bin/startkde$)" != "" ]; then

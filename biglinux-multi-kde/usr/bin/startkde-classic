@@ -42,4 +42,4 @@ fi
 
 echo "classic" > ~/.kdebiglinux/lastlogin
 
-startkde
+exec startplasma-x11

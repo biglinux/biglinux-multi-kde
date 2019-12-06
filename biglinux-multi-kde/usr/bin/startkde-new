@@ -41,4 +41,6 @@ fi
 
 echo "new" > ~/.kdebiglinux/lastlogin
 
+export GTK_USE_PORTAL=1
+
 exec startplasma-x11

@@ -42,5 +42,6 @@ fi
 echo "new" > ~/.kdebiglinux/lastlogin
 
 export GTK_USE_PORTAL=1
+export KWIN_COMPOSE=O2ES
 
-exec startplasma-x11
+QSG_RENDER_LOOP=basic exec startplasma-x11

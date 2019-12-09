@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=XSession
-Exec=/usr/bin/startkde-classic
+Exec=/usr/bin/startkde-biglinux classic
 TryExec=/usr/bin/startplasma-x11
 DesktopNames=KDE
-Name=Clássico (KDE Plasma)
+Name=Classic (KDE Plasma)

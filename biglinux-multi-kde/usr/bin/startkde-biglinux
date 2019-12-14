@@ -15,8 +15,7 @@ fi
 nowlogin=$1
 #ultimo login
 lastlogin=$(cat "$HOME/.kdebiglinux/lastlogin")
-#resolucao vertical
-resolucao_vertical="$(LANG=C xdpyinfo  | grep 'dimensions:' | sed 's|.*dimensions: *||g;s|x.*||g')"
+
 
 mkdir -p "$HOME/.kdebiglinux/$nowlogin"
 
@@ -56,20 +55,8 @@ fi
 echo "$nowlogin" > ~/.kdebiglinux/lastlogin
 
 
-LANG=C xdpyinfo  | grep 'dimensions:' | sed 's|.*dimensions: *||g;s|x.*||g'
+/usr/share/biglinux/multi-kde/$nowlogin 2> /dev/null
 
-
-
-
-if [ "$nowlogin" = "classic" ] && [ "$(grep "$resolucao_vertical" ~/.config/plasmashellrc)" = "" ]; then
-    echo "[PlasmaViews][Panel 2][Horizontal$resolucao_vertical]
-thickness=36" >> ~/.config/plasmashellrc
-fi
-
-if [ "$nowlogin" = "new" ] && [ "$(grep "$resolucao_vertical" ~/.config/plasmashellrc)" = "" ]; then
-    echo "[PlasmaViews][Panel 2][Horizontal$resolucao_vertical]
-thickness=42" >> ~/.config/plasmashellrc
-fi
 
 if [ "$2" = light ];then
     QT_QUICK_BACKEND=software QSG_RENDER_LOOP=basic exec startplasma-x11

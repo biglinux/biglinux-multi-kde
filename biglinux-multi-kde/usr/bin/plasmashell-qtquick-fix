@@ -6,9 +6,9 @@
 OIFS=$IFS
 IFS=$'\n'
 
-for i  in $(LC_ALL=C grep -R "^Exec" /usr/share/applications/ /var/lib/flatpak/exports/share/applications/ /var/lib/snapd/desktop/applications/ | grep -v 'QT_QUICK_BACKEND\|Binary\|org.kde.discover\|screensavers' | cut -f1 -d: | uniq); do
+for i  in $(LC_ALL=C grep -R "^Exec" /usr/share/applications/ /var/lib/flatpak/exports/share/applications/ /var/lib/snapd/desktop/applications/ | grep -vi 'QT_QUICK_BACKEND\|Binary\|org.kde.discover\|screensaver\|webapp\|gnome\|gtk\|libreoffice\|firefox\|openjdk\|java\|okular\|chrom' | cut -f1 -d: | uniq); do
 
-    echo "testando isso aqui"
+
     sed -i 's|^Exec=|Exec=QT_QUICK_BACKEND= |g'  "$i"
 done
 

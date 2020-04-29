@@ -11,6 +11,14 @@ if [ "$(ps -aux | grep "$USER" | grep /usr/bin/startplasma-x11$)" != "" ]; then
     exit 0
 fi
 
+# Virtualization fix open
+if [ "$(xrandr --current | grep \* | grep 800x600)" != "" ] && [ "$(lspci | grep -i vga | grep -i vmware)" != "" ]; then
+    xrandr -s 1280x720
+    kwriteconfig5 --file ~/.config/kded5rc --group Module-kscreen --key autoload false
+fi
+# Virtualization fix close
+
+
 #sessão atual (definido pelo xsession/.desktop)
 nowlogin=$1
 #ultimo login
@@ -58,7 +66,24 @@ echo "$nowlogin" > ~/.kdebiglinux/lastlogin
 /usr/share/biglinux/multi-kde/$nowlogin 2> /dev/null
 
 
-if [ "$2" = light ];then
+if [ ! -e "$HOME/.big_performance" ]; then
+    if [ "$(cat /etc/default-performance-biglinux)" = "0" ]; then
+        /usr/share/bigbashview/bcc/apps/biglinux-themes-gui/normal.run quiet
+    fi
+
+    if [ "$(cat /etc/default-performance-biglinux)" = "1" ]; then
+        /usr/share/bigbashview/bcc/apps/biglinux-themes-gui/optimized.run quiet
+    fi
+
+    if [ "$(cat /etc/default-performance-biglinux)" = "2" ]; then
+        /usr/share/bigbashview/bcc/apps/biglinux-themes-gui/performance.run quiet
+    fi
+fi
+
+
+
+
+if [ -e "$HOME/.config/kdelight" ]; then
     QT_QUICK_BACKEND=software QSG_RENDER_LOOP=basic exec startplasma-x11
 else
     exec startplasma-x11

@@ -1,10 +1,10 @@
 Package: biglinux-multi-kde
-Version: 1.1.0-1big5
+Version: 1.1.1-1big1
 Depends: plasma-workspace
 Architecture: all
 Maintainer: Bruno Goncalves <www.biglinux.com.br>
 Section: admin
 Priority: optional
-Installed-Size:40
+Installed-Size:48
 Description: Enable two or more options to login and KDE, like classical and new. Don't remove this package in BigLinux.
 

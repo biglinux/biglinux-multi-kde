@@ -2,9 +2,11 @@
 d41d8cd98f00b204e9800998ecf8427e  DEBIAN/md5sums
 43f7ec472e98f118d4c56c46d4f4e105  DEBIAN/postrm
 5b3628af299a9aa74f362d15e7aa20fd  DEBIAN/preinst
-fffaac4f1b277c83cc909fb706dd8326  DEBIAN/control
-8d226c3f869ca8d565ff5a67aedead0a  usr/bin/startkde-biglinux
+67b97e6fc8db6774f8108ce9d55e6c86  DEBIAN/control
+a8bea0318c841a277c8adc38a4cb580d  usr/bin/plasmashell-qtquick-fix
+6d5dddbe9a7ed43fd1311a03be0f5057  usr/bin/startkde-biglinux
 b747539d1981ea26432ddb25b98e33c4  usr/share/xsessions/plasma-new.desktop
 f5cb68f0a3881a8ff50c3d7467c29587  usr/share/xsessions/plasma.desktop
 2f78e3d9a6bc0a30d89b45786e500be1  usr/share/biglinux/multi-kde/classic
 4e6386314692a3618066680357a534e8  usr/share/biglinux/multi-kde/new
+1f8922544b439f72a0d21682913dfbd4  etc/apt/apt.conf.d/99big-qtquick-fix

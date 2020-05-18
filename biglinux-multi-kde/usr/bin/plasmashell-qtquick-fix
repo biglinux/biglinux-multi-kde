@@ -12,4 +12,7 @@ for i  in $(LC_ALL=C grep -R "^Exec" /usr/share/applications/ /var/lib/flatpak/e
     sed -i 's|^Exec=|Exec=QT_QUICK_BACKEND= |g'  "$i"
 done
 
+# Fix badger overlay in icons, like in telegram-desktop
+sed -i '0,/hideSource: .*/s//hideSource: false/' /usr/share/plasma/plasmoids/org.kde.plasma.taskmanager/contents/ui/TaskBadgeOverlay.qml
+
 IFS=$OIFS

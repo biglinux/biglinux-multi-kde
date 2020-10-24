@@ -1,15 +1,6 @@
 #!/bin/bash
 
 
-#Link from wallpaper to ksplash
-ln -sf "$(grep '\[Wallpaper\]' -A2 -m1 ~/.config/plasma-org.kde.plasma.desktop-appletsrc | grep -m1 "Image=" | sed 's|Image=file://||g'
-/usr/share/wallpapers/BigLinux01.jpg)" /tmp/bigksplash.jpg
-chmod 777 /tmp/bigksplash.jpg
-
-
-feh --bg-scale "/tmp/bigksplash.jpg" &
-
-
 #if user is running another kde instance, just exit
 if [ "$(ps -aux | grep "$USER" | grep /usr/bin/startplasma-x11$)" != "" ]; then
     exit 0
@@ -72,6 +63,13 @@ fi
 
 echo "$nowlogin" > ~/.kdebiglinux/lastlogin
 
+#Link from wallpaper to ksplash
+ln -sf "$(grep '\[Wallpaper\]' -A2 -m1 ~/.config/plasma-org.kde.plasma.desktop-appletsrc | grep -m1 "Image=" | sed 's|Image=file://||g'
+/usr/share/wallpapers/BigLinux01.jpg)" /tmp/bigksplash.jpg
+chmod 777 /tmp/bigksplash.jpg
+
+
+feh --bg-scale "/tmp/bigksplash.jpg" &
 
 # Fix full screen when switch desktop
 if [ "$lastlogin" != "$nowlogin" ]; then
@@ -111,6 +109,8 @@ if [ ! -e "$HOME/.big_performance" ]; then
     fi
 fi
 
+# Theme in first login
+first-login-theme
 
 if [ -e "$HOME/.config/kdelight" ]; then
     QT_QUICK_BACKEND=software QSG_RENDER_LOOP=basic exec startplasma-x11

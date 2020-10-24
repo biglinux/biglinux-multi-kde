@@ -5,11 +5,16 @@ mkdir -p "/usr/share/dpkgdivert/biglinux-multi-kde"
 case "$1" in
   install)
     dpkg-divert --package "$package_name" --divert "/usr/share/dpkgdivert/biglinux-multi-kde/usrsharexsessionsplasma.desktop" --rename "/usr/share/xsessions/plasma.desktop"
+    dpkg-divert --package "$package_name" --divert "/usr/share/dpkgdivert/biglinux-multi-kde/usrbinksplashqml" --rename "/usr/bin/ksplashqml"
     ;;
   upgrade)
 if [ "$(dpkg-divert --list "/usr/share/xsessions/plasma.desktop")" = "" ]
 then
     dpkg-divert --package "$package_name" --divert "/usr/share/dpkgdivert/biglinux-multi-kde/usrsharexsessionsplasma.desktop" --rename "/usr/share/xsessions/plasma.desktop"
+fi
+if [ "$(dpkg-divert --list "/usr/bin/ksplashqml")" = "" ]
+then
+    dpkg-divert --package "$package_name" --divert "/usr/share/dpkgdivert/biglinux-multi-kde/usrbinksplashqml" --rename "/usr/bin/ksplashqml"
 fi
 ;;
 esac

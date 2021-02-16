@@ -1,5 +1,5 @@
 Package: biglinux-multi-kde
-Version: 1.1.3-1big8
+Version: 1.1.4-1big1
 Depends: plasma-workspace, applet-window-buttons
 Architecture: all
 Maintainer: Bruno Goncalves <www.biglinux.com.br>

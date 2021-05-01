@@ -1,0 +1,5 @@
+#!/bin/sh
+
+if [ "$(file -i /usr/bin/ksplashqml | grep 'charset=binary')" = "" ]; then
+    mv -f /usr/bin/ksplashqml.distrib /usr/bin/ksplashqml
+fi

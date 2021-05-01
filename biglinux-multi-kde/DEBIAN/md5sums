@@ -2,10 +2,10 @@ fb26f02aaff58244b219972339755349  DEBIAN/dpkg-divert
 d41d8cd98f00b204e9800998ecf8427e  DEBIAN/md5sums
 62b666338f005d4389ac5f1bef3199a2  DEBIAN/postrm
 0b0bd472a11c1e8323180dba7ce61170  DEBIAN/preinst
-62271b43da47a3bbaa79e93c82e6cf9e  DEBIAN/control
+f81bf7d9aac10c8f4ca87883561f658c  DEBIAN/control
 9f338fc5e25db7e1807017b61d9fc1b4  usr/bin/plasmashell-qtquick-fix
 d47c3a693d41eef5913c2097b6e72253  usr/bin/ksplashqml
-b6e1c992560a5dc16d0833f1d18d3adb  usr/bin/startkde-biglinux
+a3e0d719e177dff4b50518209dcb3a0f  usr/bin/startkde-biglinux
 b747539d1981ea26432ddb25b98e33c4  usr/share/xsessions/plasma-new.desktop
 f5cb68f0a3881a8ff50c3d7467c29587  usr/share/xsessions/plasma.desktop
 3e57c6d37a332f1ebce3d4133f7a5f91  usr/share/xsessions/topbar.desktop

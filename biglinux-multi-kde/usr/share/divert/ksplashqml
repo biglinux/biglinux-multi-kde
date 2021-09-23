@@ -1,4 +1,4 @@
 #!/bin/bash
 
-QT_QUICK_BACKEND=software exec /usr/share/dpkgdivert/biglinux-multi-kde/usrbinksplashqml ${1+"$@"}
+QT_QUICK_BACKEND=software exec /usr/bin/ksplashqml.distrib ${1+"$@"}
 

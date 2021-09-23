@@ -28,13 +28,11 @@ fi
 kde=(
 kactivitymanagerdrc
 kcminputrc
-kdeglobals
 kglobalshortcutsrc
 khotkeysrc
 kscreenlockerrc
 ksmserverrc
 ksplashrc
-kwinrc
 mimeapps.list
 plasmarc
 plasma-org.kde.plasma.desktop-appletsrc
@@ -69,7 +67,7 @@ ln -sf "$(grep '\[Wallpaper\]' -A2 -m1 ~/.config/plasma-org.kde.plasma.desktop-a
 chmod 777 /tmp/bigksplash.jpg
 
 
-feh --bg-scale "/tmp/bigksplash.jpg" &
+feh --bg-fill "/tmp/bigksplash.jpg" &
 
 # Fix full screen when switch desktop
 if [ "$lastlogin" != "$nowlogin" ]; then
@@ -79,7 +77,7 @@ if [ "$lastlogin" != "$nowlogin" ]; then
         #Firefox
         sed -i 's|user_pref("browser.tabs.drawInTitlebar", false);|user_pref("browser.tabs.drawInTitlebar", true);|g' ~/.mozilla/firefox/*.default/prefs.js
         #Menubar to kde apps
-        sed -i '/MenuBar=Disabled/d' ~/.config/*rc
+        sed -i '/MenuBar=Disabled/d' ~/.config/okularrc
         #Kwin
         sed -i '/BorderlessMaximizedWindows=true/d' ~/.config/kwinrc
         
@@ -116,12 +114,51 @@ if [ "$(grep -i 'SingleClick=' ~/.config/kdeglobals)" = "" ]; then
     kwriteconfig5 --group KDE --key SingleClick true
 fi
 
+# Fix ssh agent
+if [ -z "$SSH_AGENT_PID" ]; then
+  eval "$(ssh-agent -s)"
+fi
+
+
+# Fix dolphin and konsole size
+
+RESOLUTION="$(xdpyinfo | awk '/dimensions/ {print $2}')"
+SCREEN="$(xrandr | grep 'connected primary' | cut -f1 -d" ")"
+
+WIDTH="$(echo "$RESOLUTION"| cut -f1 -dx)"
+
+HEIGHT="$(echo "$RESOLUTION"| cut -f2 -dx)"
+
+WINDOW_HEIGHT="$(($HEIGHT - $(($HEIGHT / 3))))"
+
+WINDOW_WIDTH="$(($WIDTH - $(($WIDTH / 3))))"
+
+for i in "$HOME/.config/konsolerc" "$HOME/.config/dolphinrc"; do
+
+    if [ -e "$i" ] && [ "$(grep "$RESOLUTION" "$i")" = "" ]; then
+
+        kwriteconfig5 --group "MainWindow" --key "$SCREEN Height $RESOLUTION" --file "$i" "$WINDOW_HEIGHT"
+        
+        kwriteconfig5 --group "MainWindow" --key "$SCREEN Width $RESOLUTION" --file "$i" "$WINDOW_WIDTH"
+        
+        kwriteconfig5 --group "MainWindow" --key "$SCREEN YPosition $RESOLUTION" --file "$i" "$WINDOW_HEIGHT"
+
+        kwriteconfig5 --group "MainWindow" --key "$SCREEN XPosition $RESOLUTION" --file "$i" "$WINDOW_WIDTH"
+
+    fi
+
+done
+
+/usr/lib/pam_kwallet_init &
+
+export KWIN_EFFECTS_FORCE_ANIMATIONS=1
 
 if [ -e "$HOME/.config/kdelight" ]; then
     QT_QUICK_BACKEND=software QSG_RENDER_LOOP=basic exec startplasma-x11
 else
     exec startplasma-x11
 fi
+
 
 killall feh
 sleep 20

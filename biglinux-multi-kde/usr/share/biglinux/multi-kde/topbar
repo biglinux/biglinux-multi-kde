@@ -9,3 +9,5 @@ thickness=60" >> ~/.config/plasmashellrc
     echo "[PlasmaViews][Panel 34][Horizontal$resolucao_horizontal]
 thickness=28" >> ~/.config/plasmashellrc
 fi 
+
+ENABLE_LATTE=1

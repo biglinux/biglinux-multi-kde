@@ -5,5 +5,5 @@ resolucao_horizontal="$(LANG=C xdpyinfo  | grep 'dimensions:' | sed 's|.*dimensi
 
 if [ "$(grep "$resolucao_horizontal" ~/.config/plasmashellrc)" = "" ]; then
     echo "[PlasmaViews][Panel 2][Horizontal$resolucao_horizontal]
-thickness=42" >> ~/.config/plasmashellrc
+thickness=44" >> ~/.config/plasmashellrc
 fi 

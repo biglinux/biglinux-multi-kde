@@ -1,5 +1,7 @@
 #!/bin/sh
 
+. /usr/share/biglinux/multi-kde/$MULTIKDE
+
 rm -f ~/.config/autostart/org.kde.latte-dock.desktop
 
 if [ "$(qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.isShuttingDown)" = "false" ]; then
